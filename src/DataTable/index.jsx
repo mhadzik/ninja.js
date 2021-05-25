@@ -1,30 +1,28 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import Pagination from './Pagination'
 import Row from './Row'
+import {PageContext} from '../context/page-context'
 import Search from './Search'
 
-const DataTable = ({rowss, rowsPerPage}) => {
-  console.log(rowss)
-  const [rows, setRows] = useState(rowss);
+const DataTable = ({rowsAmount}) => {
+  console.log(rowsAmount)
+  const rowsPerPage = useContext(PageContext).rowsPerPage
+  const [rows, setRows] = useState(rowsAmount);
   const [currentPageNumber, setCurrentPageNumber] = useState(0);
 
-  // defaultProps = {
-  //   rowsPerPage: 40
-  // }
-
-  const calculateTotalNumberOfPages = (rowss) => {
+  const calculateTotalNumberOfPages = (rowsAmount) => {
     if (rowsPerPage === 0) return 0
-    return Math.ceil(rowss.length / rowsPerPage)
+    return Math.ceil(rowsAmount.length / rowsPerPage)
   }
 
-  const [totalNumberOfPages, setTotalNumberOfPages] = useState(calculateTotalNumberOfPages(rowss));
+  const [totalNumberOfPages, setTotalNumberOfPages] = useState(calculateTotalNumberOfPages(rowsAmount));
 
   const search = (event) => {
     const text = event.target.value
-    let rowsFound = rowss
+    let rowsFound = rowsAmount
 
     if (text) {
-      rowsFound = rowss.filter((row) => {
+      rowsFound = rowsAmount.filter((row) => {
         return row.name1.toLowerCase().search(text.toLowerCase()) > -1 ||
          (row.email && row.email.toLowerCase().search(text.toLowerCase()) > -1)
       })
@@ -64,4 +62,9 @@ const DataTable = ({rowss, rowsPerPage}) => {
       </div>
     )
 }
+
+DataTable.defaultProps = {
+  rowsPerPage: 40
+}
+
 export default DataTable

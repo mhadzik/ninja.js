@@ -1,11 +1,14 @@
 import React from 'react';
 import DataTable from './DataTable';
 import './App.css';
+import PageContext from './context/page-context'
 
-const App = (props) => {
+const App = ({rows}) => {
 
   let content = <div className="container mt-3">
-    <DataTable rowss={props.rows} locale="da" rowsPerPage={5} />
+    <PageContext>
+      <DataTable rowsAmount={rows} locale="da"/>
+    </PageContext>
   </div>
 
   return content;
