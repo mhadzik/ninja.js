@@ -1,12 +1,11 @@
-import React, {useContext, useState} from 'react'
+import React, {useState} from 'react'
 import Pagination from './Pagination'
 import Row from './Row'
-import {PageContext} from '../context/page-context'
 import Search from './Search'
 
-const DataTable = ({data, searchKeys}) => {
+const DataTable = ({data, searchKeys, rowsAmount}) => {
   console.log(data, searchKeys)
-  const rowsPerPage = useContext(PageContext).rowsPerPage
+  const [rowsPerPage, setRowsPerPage] = useState(rowsAmount);
   const [rows, setRows] = useState(data);
   const [currentPageNumber, setCurrentPageNumber] = useState(0);
 
