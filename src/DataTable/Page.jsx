@@ -2,13 +2,10 @@ import React from 'react'
 
 const Page = ({ pageNumber, currentPageNumber, onChange }) => {
 
-  const isActivePage = () => {
-    return currentPageNumber === pageNumber
-  }
+  const isActivePage = () => currentPageNumber === pageNumber;
+  
 
-  const renderedPageNumber = () => {
-    return pageNumber + 1
-  }
+  const renderedPageNumber = () => pageNumber + 1;
 
   const click = (event) => {
     event.preventDefault()

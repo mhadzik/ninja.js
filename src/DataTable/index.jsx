@@ -4,28 +4,26 @@ import Row from './Row'
 import {PageContext} from '../context/page-context'
 import Search from './Search'
 
-const DataTable = ({rowsAmount}) => {
-  console.log(rowsAmount)
+const DataTable = ({data, searchKeys}) => {
+  console.log(data, searchKeys)
   const rowsPerPage = useContext(PageContext).rowsPerPage
-  const [rows, setRows] = useState(rowsAmount);
+  const [rows, setRows] = useState(data);
   const [currentPageNumber, setCurrentPageNumber] = useState(0);
 
-  const calculateTotalNumberOfPages = (rowsAmount) => {
+  const calculateTotalNumberOfPages = (data) => {
     if (rowsPerPage === 0) return 0
-    return Math.ceil(rowsAmount.length / rowsPerPage)
+    return Math.ceil(data.length / rowsPerPage)
   }
 
-  const [totalNumberOfPages, setTotalNumberOfPages] = useState(calculateTotalNumberOfPages(rowsAmount));
+  const [totalNumberOfPages, setTotalNumberOfPages] = useState(calculateTotalNumberOfPages(data));
 
   const search = (event) => {
     const text = event.target.value
-    let rowsFound = rowsAmount
+    let rowsFound = data
 
     if (text) {
-      rowsFound = rowsAmount.filter((row) => {
-        return row.name1.toLowerCase().search(text.toLowerCase()) > -1 ||
-         (row.email && row.email.toLowerCase().search(text.toLowerCase()) > -1)
-      })
+      searchKeys.map(key=> rowsFound = data.filter((row) => row[key]?.toLowerCase().search(text.toLowerCase()) > -1)
+      )
     }
 
     setRows(rowsFound);
@@ -44,7 +42,7 @@ const DataTable = ({rowsAmount}) => {
 
 
     const rowsToRender = rows
-      .map(row => <Row key={row.per_id} row={row} />)
+      .map((row,i) => <Row key={i} row={row} />)
       .slice(...rowsInPageNumber(currentPageNumber))
 
     return(
