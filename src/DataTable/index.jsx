@@ -4,7 +4,7 @@ import Row from "./Row";
 import Search from "./Search";
 import useSearch from "../hooks/use-search";
 
-const DataTable = ({ data, searchKeys, rowsAmount }) => {
+const DataTable = ({ data, searchKeys, rowsAmount, rowRenderKeys }) => {
   const [rowsPerPage] = useState(rowsAmount);
   const [rows, setRows] = useState(data);
   const [currentPageNumber, setCurrentPageNumber] = useState(0);
@@ -38,7 +38,7 @@ const DataTable = ({ data, searchKeys, rowsAmount }) => {
   };
 
   const rowsToRender = rows
-    .map((row, i) => <Row key={i} row={row} />)
+    .map((row, i) => <Row key={i} link={row[rowRenderKeys.link]} title={row[rowRenderKeys.title]} desc={row[rowRenderKeys.desc]} />)
     .slice(...rowsInPageNumber(currentPageNumber));
 
   return (

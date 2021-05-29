@@ -3,8 +3,6 @@ import React from 'react'
 const Page = ({ pageNumber, currentPageNumber, onChange }) => {
 
   const isActivePage = () => currentPageNumber === pageNumber;
-  
-
   const renderedPageNumber = () => pageNumber + 1;
 
   const click = (event) => {

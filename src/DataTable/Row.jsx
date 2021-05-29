@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const Row = ({ row }) => {
-  const {edit_path, name1, email} = row;
+const Row = ({ link, title, desc }) => {
+
   return (
+
     <tr>
       <td>
-        <a href={edit_path}>
-          {name1}
-        </a><br />
-        <small>{email}</small>
+        <a href={link}>{title}</a>
+        <br />
+        <small>{desc}</small>
       </td>
     </tr>
-  )
-}
+  );
+};
 
-export default Row
+export default Row;
