@@ -1,15 +1,9 @@
 import React from 'react'
 
-const Page = (props) => {
-  const { pageNumber, currentPageNumber, onChange } = props
+const Page = ({ pageNumber, currentPageNumber, onChange }) => {
 
-  const isActivePage = () => {
-    return currentPageNumber == pageNumber
-  }
-
-  const renderedPageNumber = () => {
-    return pageNumber + 1
-  }
+  const isActivePage = () => currentPageNumber === pageNumber;
+  const renderedPageNumber = () => pageNumber + 1;
 
   const click = (event) => {
     event.preventDefault()
