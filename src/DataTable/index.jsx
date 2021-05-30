@@ -38,6 +38,7 @@ const DataTable = ({ data, searchKeys, rowsAmount, rowRenderKeys }) => {
   };
 
   const rowsToRender = rows
+  
     .map((row, i) => <Row key={i} link={row[rowRenderKeys.link]} title={row[rowRenderKeys.title]} desc={row[rowRenderKeys.desc]} />)
     .slice(...rowsInPageNumber(currentPageNumber));
 
