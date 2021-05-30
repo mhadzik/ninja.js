@@ -3,6 +3,8 @@ import DataTable from "./DataTable";
 import "./App.css";
 
 const App = ({ data }) => {
+
+  // Preparing tables of object keys for DataTable component based on dataset provided
   const dataKeys = Object.keys(Object.assign({}, ...data));
   const rowKeys = Object.keys(Object.assign({}, ...data)).slice(0, 3);
   const rowRenderKeys = {
